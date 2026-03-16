@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Username Validation</title>
+
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<script>
+function validateUsername() {
+
+    const userInp = document.getElementById("username");
+    const msg = document.getElementById("userError");
+    const val = userInp.value;
+
+    msg.style.display = "block";
+
+    if (val.length === 0) {
+        msg.style.display = "none";
+    }
+
+    else if (val.length < 4) {
+        msg.innerHTML = "Too short (minimum 4 characters)";
+        msg.className = "w3-tiny w3-text-red";
+        userInp.classList.add("w3-border-red");
+        userInp.classList.remove("w3-border-green");
+    }
+
+    else if (!/^[a-zA-Z0-9_]+$/.test(val)) {
+        msg.innerHTML = "Only letters, numbers, and underscores allowed";
+        msg.className = "w3-tiny w3-text-red";
+        userInp.classList.add("w3-border-red");
+        userInp.classList.remove("w3-border-green");
+    }
+
+    else {
+        msg.innerHTML = "Username available!";
+        msg.className = "w3-tiny w3-text-green";
+        userInp.classList.remove("w3-border-red");
+        userInp.classList.add("w3-border-green");
+    }
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="w3-container" style="max-width:300px">
+
+<label class="w3-text-grey">Username</label>
+
+<input type="text"
+       id="username"
+       class="w3-input w3-border w3-round"
+       oninput="validateUsername()"
+       placeholder="Enter username...">
+
+<div id="userError"
+     class="w3-tiny w3-margin-top"
+     style="display:none;">
+</div>
+
+</div>
+
+</body>
+</html>
